@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded shadow-md max-w-lg w-full">
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">To-Do App</h1>
+
+        <form action="/post" method="post" class="flex items-center justify-between mb-6">
+            <input type="text" name="content" id="input" class="border border-gray-300 p-2 rounded w-full mr-4"
+                placeholder="Enter your task">
+            <button type="submit"
+                class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded focus:outline-none focus:ring">
+                Submit
+            </button>
+        </form>
+
+        <ul class="space-y-4">
+            <% user.forEach(task=> { %>
+                <li class="flex justify-between items-center bg-gray-50 p-4 rounded shadow-sm">
+                    <div class="text-gray-700">
+                        <%= task.content %>
+                    </div>
+                    <div class="space-x-2 flex">
+                        <form action="/delete/<%= task._id %>" method="POST">
+                            <button type="submit" class="text-red-500 hover:underline">Remove</button>
+                        </form>
+                        <form action="/edit/<%= task._id %>" method="POST">
+                            <button type="submit" class="text-red-500 hover:underline">edit</button>
+                        </form>
+                    </div>
+                </li>
+                <% }) %>
+                <% result.forEach(task1=> { %>
+                    <div>
+                        <%= task1.content %>
+                   <% </div> %>
+
+        </ul>
+    </div>
+</body>
+
+</html>
